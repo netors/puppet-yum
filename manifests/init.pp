@@ -294,7 +294,7 @@ class yum (
   }
 
   # Yum Configuration file
-  file { "${yum.config_file}":
+  file { "${yum::config_file}":
     ensure  => $yum::manage_file,
     path    => $yum::config_file,
     mode    => $yum::config_file_mode,

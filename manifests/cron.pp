@@ -36,7 +36,7 @@ class yum::cron {
     require    => Package['yum-cron'],
   }
 
-  file { 'yum-cron':
+  file { "${yum::update_configuration_file}":
     ensure  => $manage_update_file,
     path    => $yum::update_configuration_file,
     content => template($yum::update_template),

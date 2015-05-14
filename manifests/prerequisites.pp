@@ -10,7 +10,7 @@ class yum::prerequisites {
 #  yum::plugin { 'security': }
 
   if $yum::bool_install_all_keys == true {
-    file { 'rpm_gpg':
+    file { '/etc/pki/rpm-gpg/':
       path    => '/etc/pki/rpm-gpg/',
       source  => "puppet:///modules/yum/${::operatingsystem}.${yum::osver[0]}/rpm-gpg/",
       recurse => true,

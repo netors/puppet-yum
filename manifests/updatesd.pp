@@ -40,7 +40,7 @@ class yum::updatesd {
     require    => Package['yum-updatesd'],
   }
 
-  file { 'yum-updatesd.conf':
+  file { '/etc/yum/yum-updatesd.conf':
     ensure  => $manage_update_file,
     path    => '/etc/yum/yum-updatesd.conf',
     source  => 'puppet:///modules/yum/yum-updatesd.conf',

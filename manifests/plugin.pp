@@ -42,7 +42,7 @@ define yum::plugin (
   }
 
   if ( $source != '' ) {
-    file { "yum_plugin_conf_${name}":
+    file { "${yum::plugins_config_dir}/${name}.conf":
       ensure => $ensure,
       path   => "${yum::plugins_config_dir}/${name}.conf",
       owner  => root,

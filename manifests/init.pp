@@ -279,7 +279,7 @@ class yum (
     default    => false,
   }
 
-  file { 'yum.repo_dir':
+  file { "${yum::repo_dir}":
     ensure  => directory,
     path    => $yum::repo_dir,
     source  => $yum::source_repo_dir,
@@ -294,7 +294,7 @@ class yum (
   }
 
   # Yum Configuration file
-  file { 'yum.conf':
+  file { "${yum.config_file}":
     ensure  => $yum::manage_file,
     path    => $yum::config_file,
     mode    => $yum::config_file_mode,
@@ -308,7 +308,7 @@ class yum (
 
   # The whole yum configuration directory can be recursively overriden
   if $yum::source_dir {
-    file { 'yum.dir':
+    file { "${yum::config_dir}":
       ensure  => directory,
       path    => $yum::config_dir,
       source  => $yum::source_dir,
@@ -321,7 +321,7 @@ class yum (
 
   # set the premissions for the cache and persist dirs recursively
   if $bool_manage_persist_dir {
-    file { 'yum.persist.dir':
+    file { "${yum::persist_dir}":
       ensure  => directory,
       path    => $yum::persist_dir,
       mode    => $yum::config_file_mode,
@@ -332,7 +332,7 @@ class yum (
   }
 
   if $bool_manage_cache_dir {
-    file { 'yum.cache.dir':
+    file { "${yum::cache_dir}":
       ensure  => directory,
       path    => $yum::cache_dir,
       mode    => $yum::config_file_mode,
@@ -365,7 +365,7 @@ class yum (
 
   ### Debugging, if enabled ( debug => true )
   if $yum::bool_debug == true {
-    file { 'debug_yum':
+    file { "${settings::vardir}/debug-yum":
       ensure  => $yum::manage_file,
       path    => "${settings::vardir}/debug-yum",
       mode    => '0640',

@@ -10,7 +10,7 @@ class yum::plugin::versionlock (
     ensure => $ensure
   }
 
-  file { 'yum.versionlock.list':
+  file { $path:
     ensure => $ensure,
     path   => $path,
     owner  => 'root',
